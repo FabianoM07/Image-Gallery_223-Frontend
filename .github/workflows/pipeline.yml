@@ -1,25 +1,23 @@
 name: Hello World Pipeline
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
-      - name: Say Hello
-        run: echo "Hello World!"
+    - name: Say Hello
+      run: echo "Hello World"
 
-      - name: Print Secret
-        run: echo $MY_SECRET
-        env:
-          MY_SECRET: ${{ secrets.MY_SECRET }}
+    - name: Print Secret
+      run: echo $MY_SECRET
 
-      - name: Run Hello World Script
-        run: ./run.sh
+    - name: Give execution permission for run.sh
+      run: chmod +x ./run.sh  
+
+    - name: Run Hello World Script
+      run: ./run.sh  
