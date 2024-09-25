@@ -19,10 +19,7 @@ jobs:
       - name: Print Secret
         run: echo $MY_SECRET
         env:
-             MY_SECRET: ${{ secrets.MY_SECRET }}
+          MY_SECRET: ${{ secrets.MY_SECRET }}
 
       - name: Run Hello World Script
         run: ./run.sh
-
-
-
