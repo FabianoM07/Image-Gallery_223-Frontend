@@ -16,3 +16,9 @@ jobs:
       - name: Say Hello
         run: echo "Hello World!"
 
+      - name: Print Secret
+        run: echo $MY_SECRET
+        env:
+             MY_SECRET: ${{ secrets.MY_SECRET }}
+
+
