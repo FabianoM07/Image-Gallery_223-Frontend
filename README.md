@@ -5,7 +5,7 @@ Herzlich Willkommen zum Frontend unseres üK Projektes, Image-Gallery. Folgen Si
 ## Setup des Frontend 
 
 ### Schritt 1
-Um das Projekt nutzen zu können müssen sie zu erst das Git Repository clonen.
+Um das Projekt nutzen zu können müssen sie zu erst das Git Repository clonen. 
 
 ### Schritt 2
 Im Frontend wird mit Yarn gearbeitet, falls Sie dies noch nicht heruntergeladen haben, führen sie folgenden Command in Ihrer Konsole aus:
