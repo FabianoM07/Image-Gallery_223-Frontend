@@ -14,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Verbinde dich mit dem Remote-Server und führe einen Befehl aus
+      # Kopiere die run.sh-Datei auf den Remote-Server und führe sie aus
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
@@ -23,5 +23,10 @@ jobs:
           password: ${{ secrets.JUMP_PASSWORD }}
           proxy_host: ${{ secrets.PROXY_HOST }}
           proxy_username: ${{ secrets.PROXY_USERNAME }}
-          proxy_password: ${{ secrets.PROXY_PASSWORD}}
-          script: echo "Hello World"
+          proxy_password: ${{ secrets.PROXY_PASSWORD }}
+          script: |
+            # Kopiere das run.sh Skript auf den Remote-Server
+            scp run.sh ${{ secrets.JUMP_USERNAME }}@${{ secrets.JUMP_HOST }}:/home/${{ secrets.JUMP_USERNAME }}/run.sh
+            
+            # Auf dem Remote-Server das Skript ausführbar machen und ausführen
+            ssh ${{ secrets.JUMP_USERNAME }}@${{ secrets.JUMP_HOST }} 'chmod +x /home/${{ secrets.JUMP_USERNAME }}/run.sh && /home/${{ secrets.JUMP_USERNAME }}/run.sh'
