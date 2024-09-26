@@ -5,6 +5,7 @@ import { object, string } from 'yup';
 import { ImagePostDTO } from '../../../types/models/ImagePost.model';
 import PostImageService from '../../../Services/PostImageService';
 import {useNavigate} from "react-router-dom";
+import ActiveUserContext from "../../../Contexts/ActiveUserContext";
 
 
 type PostFormProps = {
