@@ -3,19 +3,19 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Die Pipeline wird bei jedem Push in den Main-Branch ausgelöst
+      - main  # The pipeline triggers on a push to the main branch
 
 jobs:
   remote-command:
     runs-on: ubuntu-latest
     
     steps:
-      # Checke das Repository aus
+      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Kopiere die run.sh-Datei auf den Remote-Server und führe sie aus
-      - name: executing remote ssh commands using password
+      # Copy the run.sh file to the remote server and execute it
+      - name: Copy and execute script on remote server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.JUMP_HOST }}
@@ -25,8 +25,8 @@ jobs:
           proxy_username: ${{ secrets.PROXY_USERNAME }}
           proxy_password: ${{ secrets.PROXY_PASSWORD }}
           script: |
-            # Kopiere das run.sh Skript auf den Remote-Server
-            scp run.sh ${{ secrets.JUMP_USERNAME }}@${{ secrets.JUMP_HOST }}:/home/${{ secrets.JUMP_USERNAME }}/run.sh
-            
-            # Auf dem Remote-Server das Skript ausführbar machen und ausführen
-            ssh ${{ secrets.JUMP_USERNAME }}@${{ secrets.JUMP_HOST }} 'chmod +x /home/${{ secrets.JUMP_USERNAME }}/run.sh && /home/${{ secrets.JUMP_USERNAME }}/run.sh'
+            # Copy the run.sh file to the remote server
+            scp -o StrictHostKeyChecking=no run.sh ${{ secrets.JUMP_USERNAME }}@${{ secrets.JUMP_HOST }}:/home/${{ secrets.JUMP_USERNAME }}/run.sh
+
+            # On the remote server, make the script executable and run it
+            ssh -o StrictHostKeyChecking=no ${{ secrets.JUMP_USERNAME }}@${{ secrets.JUMP_HOST }} 'chmod +x /home/${{ secrets.JUMP_USERNAME }}/run.sh && /home/${{ secrets.JUMP_USERNAME }}/run.sh'
