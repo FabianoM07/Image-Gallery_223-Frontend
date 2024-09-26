@@ -22,7 +22,8 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t fabianomarino/frontend-app:latest .
+      run: docker build -t fabianomarino/frontend-app:latest ./nypag-react_frontend-e4cfc304b98f
+
 
     - name: Push Docker image
       run: docker push fabianomarino/frontend-app:latest
