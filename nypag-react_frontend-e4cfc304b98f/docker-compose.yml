@@ -3,7 +3,7 @@ version: '3.7'
 services:
   frontend:
     restart: unless-stopped
-    image: #todo
+    image: fabianomarino/frontend-app:1.0
     container_name: frontend
     depends_on:
       - backend
@@ -11,12 +11,14 @@ services:
       - 3000:80
   backend:
     restart: unless-stopped
-    image: #todo
+    image: fabianomarino/backend-app:1.0
     container_name: backend
     ports:
       - 8080:8080
     environment:
-      -  #env
+     - spring.datasource.url=jdbc:postgresql://db:5432/postgres
+     - spring.datasource.username=postgres
+     - spring.datasource.password=postgres
     depends_on:
       - db
   db:
