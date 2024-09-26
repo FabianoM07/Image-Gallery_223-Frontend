@@ -20,4 +20,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: 22
-        script: echo "Hello World"
+        script: |
+         echo "Copying run.sh to server"
+         scp run.sh ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/path/to/destination
+         bash /path/to/destination/run.sh
