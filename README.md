@@ -2,7 +2,7 @@
 
 Herzlich Willkommen zum Frontend unseres üK Projektes, Image-Gallery. Folgen Sie die unteren Schritte um das Frontend aufzusetzen und nutzen zu können.
 
-## Setup des Frontend 
+## Setup des Frontend  
 
 ### Schritt 1
 Um das Projekt nutzen zu können müssen sie zu erst das Git Repository clonen. 
