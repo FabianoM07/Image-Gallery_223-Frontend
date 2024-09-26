@@ -28,7 +28,7 @@ jobs:
 
       # Build the Docker image
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend-app:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend-app:latest -f ./Image-Gallery_223-Frontend/nypag-react_frontend-e4cfc304b98f.
 
       # Push the Docker image to Docker Hub
       - name: Push Docker image
