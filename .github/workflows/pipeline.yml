@@ -23,3 +23,26 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: echo "Hello World"
+
+      - name: Upload run.sh to remote server
+        uses: appleboy/scp-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "./run.sh"
+          target: "~/run.sh"
+
+      - name: Execute run.sh on remote server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+           chmod +x ~/run.sh
+            ./run.sh
+
+
+          
