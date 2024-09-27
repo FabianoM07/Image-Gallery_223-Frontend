@@ -3,19 +3,19 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # The pipeline triggers on a push to the main branch
+      - main  
 
 jobs:
   remote-command:
     runs-on: ubuntu-latest
     
     steps:
-      # Checkout the repository
+     
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Copy the run.sh file to the remote server and execute it
-      - name: Copy and execute script on remote server
+      
+      - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.JUMP_HOST }}
@@ -23,10 +23,5 @@ jobs:
           password: ${{ secrets.JUMP_PASSWORD }}
           proxy_host: ${{ secrets.PROXY_HOST }}
           proxy_username: ${{ secrets.PROXY_USERNAME }}
-          proxy_password: ${{ secrets.PROXY_PASSWORD }}
-          script: |
-            # Copy the run.sh file to the remote server
-            scp -o StrictHostKeyChecking=no run.sh ${{ secrets.JUMP_USERNAME }}@${{ secrets.JUMP_HOST }}:/home/${{ secrets.JUMP_USERNAME }}/run.sh
-
-            # On the remote server, make the script executable and run it
-            ssh -o StrictHostKeyChecking=no ${{ secrets.JUMP_USERNAME }}@${{ secrets.JUMP_HOST }} 'chmod +x /home/${{ secrets.JUMP_USERNAME }}/run.sh && /home/${{ secrets.JUMP_USERNAME }}/run.sh'
+          proxy_password: ${{ secrets.PROXY_PASSWORD}}
+          script: echo "Hello World"
